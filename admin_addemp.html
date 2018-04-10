@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+        <head>
+	        <title>Admin Panel</title>
+	    </head>
+		<link rel="stylesheet" type="text/css" href="indadmstu.css" />
+		<style>
+		li.a_align, a.button{
+		list-style-type: none;
+		text-decoration: none;
+		}
+		</style>
+		
+	<body>
+	<ul class="form-style-1">	
+	<h1>Admin Add Employee</h1>
+	<fieldset>
+	
+	<form action="admin_addemp.php" name="filter_form" method="POST">
+		<li>
+		<label>Employee Name:</label>  
+		<input type="text" name="name" id="name" placeholder="Last First Middle Name" required autofocus/></li>
+		<li>
+		<label>Department</label>
+		<select name="branch" required>
+		<option>Automobile</option>
+		<option>Civil </option>
+		<option>Computer Science</option>
+		<option>Electronics Engineering</option>
+		<option>Electronics & Telecommunications</option>
+		<option>Information Technology</option>
+		<option>Mechanical</option>
+		</select></li>
+		
+		<li>
+		<input type="submit" name="add_emp" value="Add Employee" />
+		</li>
+    </form> 
+			
+
+	
+	</ul>			
+	</fieldset>
+
+	<li class="a_align"><a href="http://localhost/ERP%20System/admin_dash.php" class="button" > 
+			View All Records</a>
+	</li>			
+	</body>
+</html>

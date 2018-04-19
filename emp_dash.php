@@ -30,10 +30,10 @@ $connect->query($changepass);
 echo "Password Changed, Login Again";
 }
 
-$q = $connect->prepare("SELECT id, e_name, e_password, warn FROM employee WHERE e_name=?") OR die('query preparation failed');
+$q = $connect->prepare("SELECT id, e_name, e_password, warn, feedback FROM employee WHERE e_name=?") OR die('query preparation failed');
 	$q->bind_param('s',$user);
 	$q->execute();
-	$q->bind_result($id,$dbuser,$dbpass,$warn);
+	$q->bind_result($id,$dbuser,$dbpass,$warn,$feedback);
 	$q->fetch();
 	
 	if($dbuser == $user && $dbpass == $pass)
@@ -57,8 +57,11 @@ $q = $connect->prepare("SELECT id, e_name, e_password, warn FROM employee WHERE 
 		
 		echo "<li><strong>Warning: </strong>";
 		if($warn==1) echo "You are Warned";
-		else echo "No Warning";
-		"</li>";
+		else echo "No Warning </li>";
+		
+		echo "<li><strong>Feedback: </strong>";
+			echo $feedback;
+		echo "</li>";
 	   
 	}//login
 	else

@@ -35,19 +35,21 @@ $connect=mysqli_connect('localhost','root', '' ,'erp');
 if(mysqli_connect_errno($connect))
 		echo 'Failed to connect';
 
-$sql_display = "SELECT e_name, e_department
+$sql_display = "SELECT e_name, e_department, feedback
 FROM employee LIMIT $start, $size";
 $result = $connect->query($sql_display);
 
 if ($result->num_rows > 0) {
 	
 	echo "<table class='table-top' border='1' width='100%' > 
-	<tr> <th>Name</th> <th>Department</th> </tr>";
+	<tr> <th>Name</th> <th>Department</th> <th>Feedback</th> </tr>";
 	
      while($row = $result->fetch_assoc()) {
         echo "<tr><td>". $row['e_name'] ;
-		echo '</td><td>';
+		echo "</td><td>";
 			echo $row['e_department'];
+		echo "</td><td>";
+			echo $row['feedback'];
 		echo "</td>";
 	 }
 }

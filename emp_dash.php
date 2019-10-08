@@ -17,8 +17,8 @@
 /*//$ipaddress = $_SERVER['REMOTE_ADDR']; //ip address*/
 
 //database connection
-$connect=mysqli_connect('localhost','root', '' ,'erp');
-if(mysqli_connect_errno($connect))	echo 'Failed to connect';
+    require 'db_connection.php';
+
 
 $user = $_POST['user'];
 $pass = $_POST['pass'];

@@ -3,7 +3,7 @@
 	<head> 
 		<title> Administrator Panel </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="stylesheet" type="text/css" href="styletable.css">
+		<link rel="stylesheet" type="text/css" href="styletable.css">
 	</head>
 	
 	<body>
@@ -27,22 +27,20 @@ if(isset($_GET['page'])){
 	}
 else{
 	$start=0;
-	//$_SESSION['page']=1;
 	}
 
 //database connection
-$connect=mysqli_connect('localhost','root', '' ,'erp');
-if(mysqli_connect_errno($connect))
-		echo 'Failed to connect';
+    require 'db_connection.php';
 
-$sql_display = "SELECT e_name, e_department, feedback
+
+$sql_display = "SELECT id, e_name, e_department, feedback
 FROM employee LIMIT $start, $size";
 $result = $connect->query($sql_display);
 
 if ($result->num_rows > 0) {
 	
 	echo "<table class='table-top' border='1' width='100%' > 
-	<tr> <th>Name</th> <th>Department</th> <th>Feedback</th> </tr>";
+	<tr> <th>Name</th> <th>Department</th> <th>Feedback</th> <th>Action</th> </tr>";
 	
      while($row = $result->fetch_assoc()) {
         echo "<tr><td>". $row['e_name'] ;
@@ -50,6 +48,8 @@ if ($result->num_rows > 0) {
 			echo $row['e_department'];
 		echo "</td><td>";
 			echo $row['feedback'];
+		echo "</td><td>";
+		include 'delete_emp.php';
 		echo "</td>";
 	 }
 }
@@ -62,9 +62,10 @@ else{
 	$total_records = $result->num_rows;
 	$pages = intval($total_records / $size);
 
-	echo "<br/><ul style='background-color:#FE642E; border-radius:10px;'>";
+	echo "<br/><ul style='background-color:transparent'>";
 	for ($i=0; $i <= $pages; $i++){
-	echo "<li> <a href='admin_dash.php?page=".$i."'> $i </a>";
+		$j = $i+1;
+	echo "<li> <a href='admin_dash.php?page=".$i."' style='color:black'> ".$j."</a>";
 	}
 	
 	$connect->close();
